@@ -231,11 +231,7 @@ are also defined initially for `mstateen0`:
 
 bit 57 - `hcontext`, `scontext`
 
-bit 58 - IMSIC state of the Advanced Interrupt Architecture (AIA)
-
-bit 59 - Most other registers of the AIA (see text)
-
-bit 60 - `siselect`, `sireg`, `vsiselect`, `vsireg` of the AIA
+bits 60:58 - Reserved for the RISC-V Advanced Interrupt Architecture
 
 bit 61 - Reserved for possible `henvcfg2`/`henvcfg2h`, `senvcfg2`
 
@@ -243,30 +239,12 @@ bit 62 - `henvcfg`/`henvcfgh`, `senvcfg`
 
 bit 63 - `hstateen0`/`hstateen0h`, `sstateen0`
 
-If a hart has an IMSIC (Incoming Message-Signaled Interrupt Controller) as
-defined by the AIA, then bit 58 controls access to the IMSIC's CSRs
-(`sseteipnum`, `sclreipnum`, `sseteienum`, `sclreienum`, `stopei`, `vsseteipnum`,
-`vsclreipnum`, `vsseteienum`, `vsclreienum`, and `vstopei`) and to all IMSIC registers
-accessed through `siselect` + `sireg` and through `vsiselect` + `vsireg`. When bit 58
-of `mstateen0` is zero, if the hypervisor extension is implemented, then field
-VGEIN of CSR `hstatus` should be read-only zero, and all of CSRs `hgeip` and `hgeie`
-should be read-only zeros, unless the implementation has another, custom source
-for guest external interrupts.
-
-Bit 59 controls access to AIA CSRs `sieh`, `siph`, `hidelegh`, `hvien`/`hvienh`, `hviph`,
-`hvictl`, `hviprio1`/`hviprio1h`, `hviprio2`/`hviprio2h`, `vsieh`, and `vsiph`, as well as
-the supervisor-level `iprio` array accessed through `siselect` + `sireg`.
-
 The bits defined initially for `hstateen0` are the same as those for `mstateen0`
 except applying only to state that is accessible in VS-mode:
 
 bit 57 - `scontext`
 
-bit 58 - IMSIC state of the AIA
-
-bit 59 - `sieh`, `siph` of the AIA
-
-bit 60 - `siselect`, `sireg` of the AIA
+bits 60:58 - Reserved for the RISC-V Advanced Interrupt Architecture
 
 bit 61 - Reserved for a possible `senvcfg2`
 
